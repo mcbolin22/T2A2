@@ -1,0 +1,21 @@
+@import "./utility";
+@import "./header";
+@import "./footer";
+
+main {
+    section {
+        background-color: $boxcolor;
+        height: 90rvh;
+        width: 80rvw;
+        .blog1 {
+            background-color: red;
+            height: 100px;
+            width: 100px;
+        }
+        .blog2 {
+            background-color: blue;
+            height: 100px;
+            width: 100px;
+        }
+    } 
+}

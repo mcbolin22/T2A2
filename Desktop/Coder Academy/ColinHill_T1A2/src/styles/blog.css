@@ -1,0 +1,126 @@
+body {
+  background-color: #808080;
+  font-family: "Special Elite";
+}
+
+body {
+  background-color: #808080;
+  font-family: "Special Elite";
+}
+
+header {
+  background-color: #1e1e1e;
+  padding: 5px;
+  text-align: center;
+  padding: 20px;
+}
+header .logo {
+  display: flex;
+  justify-content: left;
+}
+header .logo a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 40px;
+}
+header #nav-items {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  font-size: 20px;
+}
+header #nav-items a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  margin: 10px;
+  margin-bottom: 0px;
+}
+
+header:hover {
+  background-color: #ff8c00;
+}
+header:hover a:hover {
+  background-color: #1e1e1e;
+  text-shadow: 5px 5px 5px #1e1e1e;
+  box-shadow: 5px 10px 8px #1e1e1e;
+}
+
+@media screen and (min-width: 1280) {
+  header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  header .logo .name {
+    margin-bottom: 0;
+  }
+  header #nav-items {
+    width: 50%;
+  }
+}
+body {
+  background-color: #808080;
+  font-family: "Special Elite";
+}
+
+footer {
+  background-color: #1e1e1e;
+  padding: 5px;
+  text-align: center;
+  padding-right: 25px;
+}
+footer .socialmedia {
+  display: flex;
+  justify-content: space-between;
+}
+footer .socialmedia a {
+  justify-content: flex-start;
+}
+footer .socialmedia a i {
+  font-weight: bold;
+  font-size: 40px;
+  color: #808080;
+  margin-left: 100px;
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+footer .socialmedia p {
+  color: #ffffff;
+  justify-content: flex-end;
+}
+footer .info {
+  color: #ffffff;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin-top: 0;
+}
+
+footer:hover {
+  background-color: #ff8c00;
+}
+footer:hover a:hover {
+  background-color: none;
+  text-shadow: 5px 5px 8px #1e1e1e;
+  scale: 1.5;
+}
+footer:hover a:hover i {
+  color: #1e1e1e;
+}
+
+main section {
+  background-color: #d9d9d9;
+  height: 90rvh;
+  width: 80rvw;
+}
+main section .blog1 {
+  background-color: red;
+  height: 100px;
+  width: 100px;
+}
+main section .blog2 {
+  background-color: blue;
+  height: 100px;
+  width: 100px;
+}/*# sourceMappingURL=blog.css.map */

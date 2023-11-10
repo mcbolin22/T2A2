@@ -1,0 +1,21 @@
+
+$phone: 450;
+$tablet: 1280;
+
+$primarycolor: #ffffff;
+$secondarycolor: #ff8c00;
+$textcolor: #1e1e1e;
+$backgroundcolor: #808080;
+$boxcolor: #d9d9d9;
+
+body {
+    background-color: $backgroundcolor;
+    font-family: "Special Elite";
+    // font-weight: bold;
+}
+
+@mixin background-stuff {
+    background-color: $textcolor;
+    padding: 5px;
+    text-align: center;
+}

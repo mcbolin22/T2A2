@@ -1,0 +1,30 @@
+@import "./styles.scss";
+
+body {
+    main {
+        section {
+        font-weight: bold;
+        font-size: 24px;
+        height: 90rvh;
+        width: 80rvw;
+        padding: 20px;
+        background-color: $boxcolor;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        img {
+            order: 1;
+            justify-content: left;
+            width: 70%;
+            height: 70%;
+        }
+        p {
+            justify-content: right;
+            order: 2;
+        }
+        }
+        
+    }
+}

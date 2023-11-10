@@ -1,0 +1,61 @@
+@import "./utility";
+
+footer {
+    @include background-stuff();
+    padding-right: 25px;
+    .socialmedia {
+        display: flex;      
+        justify-content: space-between;
+        a {
+            justify-content: flex-start;
+            i {
+                font-weight: bold;
+                font-size: 40px;
+                color: $backgroundcolor;
+                margin-left: 100px;
+                margin-top: 20px;
+                margin-bottom: 0;
+            }
+        }
+
+        p {
+            color: $primarycolor;
+            justify-content: flex-end;
+        }
+        
+    }
+    .info {
+        color: $primarycolor;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        margin-top: 0;
+
+
+        // p {
+        //     font-weight: bold;
+        // }
+    }
+}
+
+footer:hover {
+    background-color: $secondarycolor;
+    a:hover {
+        background-color: none;
+        text-shadow: 5px 5px 8px $textcolor;
+        scale: 1.5;
+        i {
+            color: $textcolor;
+        }
+    }
+}
+
+// @media screen and (min-width: $tablet) {
+//     footer {
+//         .socialmedia {
+//             width: 50pc;
+//             margin-left: auto;
+//             margin-right: auto;
+//         }
+//     }
+// }

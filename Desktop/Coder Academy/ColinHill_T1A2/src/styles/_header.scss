@@ -1,0 +1,61 @@
+@import "./utility";
+
+header {  
+    @include background-stuff();
+    padding: 20px;
+    
+    .logo {
+        display: flex;
+        justify-content:left;
+        a {
+            color: $primarycolor;
+            text-decoration: none;
+            font-size: 40px;
+        }
+    }
+    
+    #nav-items {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        font-size: 20px;
+        
+
+        a {
+            text-decoration: none;
+            color: $primarycolor;
+            font-weight: bold;
+            margin: 10px;
+            margin-bottom: 0px;
+            
+        }
+    }
+}
+
+header:hover {
+    background-color: $secondarycolor;
+    a:hover {
+        background-color: $textcolor;
+        text-shadow: 5px 5px 5px $textcolor;
+        box-shadow: 5px 10px 8px $textcolor;
+    }
+}
+
+@media screen and (min-width: $tablet){
+    header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+
+        .logo {
+            .name {
+                margin-bottom: 0;
+            }
+        }
+
+        #nav-items {
+            width: 50%;
+        }
+    }
+}
+ 
