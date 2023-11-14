@@ -2,23 +2,31 @@
 
 footer {
     @include background-stuff();
-    padding-right: 25px;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row;
+    margin: 0px;
     .socialmedia {
-        display: flex;      
-        justify-content: space-between;
+              
+        
         a {
+            text-decoration: none;
             justify-content: flex-start;
             i {
+                justify-content: space-around;
+                margin-left: 10dvw;
+                margin-right: 10dvh;
+                flex-direction: row;
                 font-weight: bold;
                 font-size: 40px;
                 color: $backgroundcolor;
-                margin-left: 100px;
                 margin-top: 20px;
-                margin-bottom: 0;
+                margin-bottom: 20px;
             }
         }
 
         p {
+            padding-right: 25px;
             color: $primarycolor;
             justify-content: flex-end;
         }
@@ -27,8 +35,9 @@ footer {
     .info {
         color: $primarycolor;
         display: flex;
+        flex-direction: column;
         justify-content: flex-end;
-        align-items: flex-start;
+        align-items: flex-end;
         margin-top: 0;
 
 
@@ -43,19 +52,52 @@ footer:hover {
     a:hover {
         background-color: none;
         text-shadow: 5px 5px 8px $textcolor;
-        scale: 1.5;
+        scale: 2;
         i {
             color: $textcolor;
         }
     }
 }
 
-// @media screen and (min-width: $tablet) {
-//     footer {
-//         .socialmedia {
-//             width: 50pc;
-//             margin-left: auto;
-//             margin-right: auto;
-//         }
-//     }
-// }
+@media screen and (max-width: $tablet) {
+    footer {
+        .socialmedia {
+            a {
+                i {
+                    margin-left: 5dvw;
+                    margin-right: 5dvh;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: $tablet) {
+    footer {
+        height: 10vh;
+        background-color: $secondarycolor;
+        flex-direction: row;
+        align-items: center;
+        .socialmedia {
+            width: 100%;
+            margin: 5px;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            
+            a {
+                width: 0px;
+                i {
+                    color: $textcolor;
+                }
+            }
+            
+        
+        }
+        .info {
+            display: none;
+        }
+    }
+}

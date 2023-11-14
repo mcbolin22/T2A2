@@ -1,6 +1,7 @@
 @import "./utility";
 
-header {  
+// Regular Menu
+header {
     @include background-stuff();
     padding: 20px;
     
@@ -41,21 +42,41 @@ header:hover {
     }
 }
 
-@media screen and (min-width: $tablet){
+@media screen and (max-width: $tablet){
     header {
+        height: 10vh; 
         display: flex;
-        align-items: flex-end;
-        justify-content: space-between;
+        align-items: center;
+        justify-content: center;
+        background-color: $secondarycolor;
 
         .logo {
+            
+
+            a {
+                color: $textcolor;
+                font-weight: bold;
+            }
+            
             .name {
                 margin-bottom: 0;
+                text-align: center;
+                color: $textcolor;
             }
         }
 
         #nav-items {
             width: 50%;
+            display: none;
+            
+            a {
+                color: $textcolor;
+            }
         }
     }
+}
+
+@media screen and (max-width: $phone) {
+
 }
  
