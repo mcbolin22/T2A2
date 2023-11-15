@@ -123,9 +123,11 @@ body {
   background-color: var(--foreground);
   color: var(--background);
   max-width: 10rem;
-  height: 81.2dvh;
+  height: fit-content;
   z-index: 2;
   position: absolute;
+  left: 0;
+  top: calc(var(--hamburger-height) * 2);
 }
 
 .hamburger-menu:has(input:checked) + .sidebar {

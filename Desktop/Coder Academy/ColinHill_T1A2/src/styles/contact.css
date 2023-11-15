@@ -37,15 +37,16 @@ header #nav-items a {
   margin-bottom: 0px;
 }
 
-header:hover {
-  background-color: #ff8c00;
+@media screen and (min-width: 1369px) {
+  header:hover {
+    background-color: #ff8c00;
+  }
+  header:hover a:hover {
+    background-color: #1e1e1e;
+    text-shadow: 5px 5px 5px #1e1e1e;
+    box-shadow: 5px 10px 8px #1e1e1e;
+  }
 }
-header:hover a:hover {
-  background-color: #1e1e1e;
-  text-shadow: 5px 5px 5px #1e1e1e;
-  box-shadow: 5px 10px 8px #1e1e1e;
-}
-
 @media screen and (max-width: 1368px) {
   header {
     height: 10vh;
@@ -83,6 +84,7 @@ footer {
   justify-content: space-between;
   display: flex;
   flex-direction: row;
+  align-self: flex-end;
   margin: 0px;
 }
 footer .socialmedia a {
@@ -114,18 +116,19 @@ footer .info {
   margin-top: 0;
 }
 
-footer:hover {
-  background-color: #ff8c00;
+@media screen and (min-width: 1369px) {
+  footer:hover {
+    background-color: #ff8c00;
+  }
+  footer:hover a:hover {
+    background-color: none;
+    text-shadow: 5px 5px 8px #1e1e1e;
+    scale: 3;
+  }
+  footer:hover a:hover i {
+    color: #1e1e1e;
+  }
 }
-footer:hover a:hover {
-  background-color: none;
-  text-shadow: 5px 5px 8px #1e1e1e;
-  scale: 2;
-}
-footer:hover a:hover i {
-  color: #1e1e1e;
-}
-
 @media screen and (max-width: 1368px) {
   footer .socialmedia a i {
     margin-left: 5dvw;
@@ -157,8 +160,136 @@ footer:hover a:hover i {
     display: none;
   }
 }
-main {
-  height: 75vh;
+body {
+  background-color: #808080;
+  font-family: "Special Elite";
+}
+
+@media screen and (min-width: 1368px) {
+  main label {
+    display: none;
+  }
+  main aside {
+    display: none;
+  }
+}
+@media screen and (max-width: 1368px) {
+  #ham-nav {
+    display: flex;
+    flex-direction: column;
+  }
+  #ham-nav a {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #ffffff;
+    margin-bottom: 40px;
+  }
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+  }
+  :root {
+    --bar-width: 60px;
+    --bar-height: 8px;
+    --hamburger-gap: 6px;
+    --foreground: #1e1e1e;
+    --background: #ffffff;
+    --hamburger-margin: 15px;
+    --animation-timing: 200ms ease-in-out;
+    --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
+  }
+  .hamburger-menu {
+    --x-width: calc(var(--hamburger-height) * 1.41421356237);
+    display: flex;
+    flex-direction: column;
+    gap: var(--hamburger-gap);
+    width: -moz-max-content;
+    width: max-content;
+    position: absolute;
+    top: var(--hamburger-margin);
+    left: var(--hamburger-margin);
+    z-index: 2;
+    cursor: pointer;
+  }
+  .hamburger-menu:has(input:checked) {
+    --foreground: #1e1e1e;
+    --background: #ffffff;
+  }
+  .hamburger-menu:has(input:focus-visible)::before,
+  .hamburger-menu:has(input:focus-visible)::after,
+  .hamburger-menu input:focus-visible {
+    border: 1px solid var(--background);
+    box-shadow: 0 0 0 1px var(--foreground);
+  }
+  .hamburger-menu::before,
+  .hamburger-menu::after,
+  .hamburger-menu input {
+    content: "";
+    width: var(--bar-width);
+    height: var(--bar-height);
+    background-color: var(--foreground);
+    border-radius: 9999px;
+    transform-origin: left center;
+    transition: opacity var(--animation-timing), width var(--animation-timing), rotate var(--animation-timing), translate var(--animation-timing), background-color var(--animation-timing);
+  }
+  .hamburger-menu input {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    pointer-events: none;
+  }
+  .hamburger-menu:has(input:checked)::before {
+    rotate: 45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / -2);
+  }
+  .hamburger-menu:has(input:checked)::after {
+    rotate: -45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / 2);
+  }
+  .hamburger-menu input:checked {
+    opacity: 0;
+    width: 0;
+  }
+  .sidebar {
+    transition: translate var(--animation-timing);
+    translate: -100%;
+    padding: 0.5rem 1rem;
+    padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
+    background-color: var(--foreground);
+    color: var(--background);
+    max-width: 10rem;
+    height: -moz-fit-content;
+    height: fit-content;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: calc(var(--hamburger-height) * 2);
+  }
+  .hamburger-menu:has(input:checked) + .sidebar {
+    translate: 0;
+  }
+}
+body main {
+  display: flex;
+  justify-content: center;
+}
+body main section {
+  font-weight: bold;
+  font-size: 24px;
+  height: 80dvh;
+  width: 95dvw;
+  margin: 10px;
+  border: 0;
+  padding: 0;
   color: #1e1e1e;
   display: flex;
   flex-direction: column;
@@ -166,43 +297,40 @@ main {
   justify-content: center;
   background-color: #d9d9d9;
 }
-main form {
-  width: 80%;
-}
-main form .form-elements {
+body main section form .form-elements {
   align-items: center;
   display: flex;
   flex-direction: row;
   margin-bottom: 24px;
 }
-main form .form-elements label {
+body main section form .form-elements label {
   font-size: 1.2rem;
 }
-main form .form-elements .form-input {
+body main section form .form-elements .form-input {
   border: 1px solid #ffffff;
   border-radius: 4px;
   outline: none;
   font-size: 1.2rem;
-  width: 100%;
   align-items: center;
+  width: 50dvw;
 }
-main form .form-elements .form-input#form-textarea {
+body main section form .form-elements .form-input#form-textarea {
   resize: none;
 }
-main form .form-elements .form-input:not(#form-textarea) {
+body main section form .form-elements .form-input:not(#form-textarea) {
   height: 35px;
 }
-main form .form-elements .form-input:focus {
+body main section form .form-elements .form-input:focus {
   box-shadow: 0 0 10px 3px #ffffff;
 }
-main form .form-elements .form-input:hover {
+body main section form .form-elements .form-input:hover {
   box-shadow: 0 0 10px 3px #ff8c00;
 }
-main .btn-div {
+body main section .btn-div {
   align-items: center;
   text-align: center;
 }
-main .btn-div #submit {
+body main section .btn-div #submit {
   height: 40px;
   background-color: #ffffff;
   border: none;
@@ -211,12 +339,15 @@ main .btn-div #submit {
   border-radius: 4px;
   margin-bottom: 24px;
 }
-main .btn-div #submit:hover {
+body main section .btn-div #submit:hover {
   background-color: #ff8c00;
 }
 
 @media screen and (max-width: 1368px) {
-  main form .form-elements {
+  body main section {
+    height: 78dvh;
+  }
+  body main section form .form-elements {
     align-items: normal;
     flex-direction: column;
   }

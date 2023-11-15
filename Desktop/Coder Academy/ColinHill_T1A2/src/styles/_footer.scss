@@ -5,6 +5,7 @@ footer {
     justify-content: space-between;
     display: flex;
     flex-direction: row;
+    align-self: flex-end;
     margin: 0px;
     .socialmedia {
               
@@ -47,14 +48,16 @@ footer {
     }
 }
 
-footer:hover {
-    background-color: $secondarycolor;
-    a:hover {
-        background-color: none;
-        text-shadow: 5px 5px 8px $textcolor;
-        scale: 2;
-        i {
-            color: $textcolor;
+@media screen and (min-width: $desktop){
+    footer:hover {
+        background-color: $secondarycolor;
+        a:hover {
+            background-color: none;
+            text-shadow: 5px 5px 8px $textcolor;
+            scale: 3;
+            i {
+                color: $textcolor;
+            }
         }
     }
 }

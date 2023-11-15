@@ -37,15 +37,16 @@ header #nav-items a {
   margin-bottom: 0px;
 }
 
-header:hover {
-  background-color: #ff8c00;
+@media screen and (min-width: 1369px) {
+  header:hover {
+    background-color: #ff8c00;
+  }
+  header:hover a:hover {
+    background-color: #1e1e1e;
+    text-shadow: 5px 5px 5px #1e1e1e;
+    box-shadow: 5px 10px 8px #1e1e1e;
+  }
 }
-header:hover a:hover {
-  background-color: #1e1e1e;
-  text-shadow: 5px 5px 5px #1e1e1e;
-  box-shadow: 5px 10px 8px #1e1e1e;
-}
-
 @media screen and (max-width: 1368px) {
   header {
     height: 10vh;
@@ -83,6 +84,7 @@ footer {
   justify-content: space-between;
   display: flex;
   flex-direction: row;
+  align-self: flex-end;
   margin: 0px;
 }
 footer .socialmedia a {
@@ -114,18 +116,19 @@ footer .info {
   margin-top: 0;
 }
 
-footer:hover {
-  background-color: #ff8c00;
+@media screen and (min-width: 1369px) {
+  footer:hover {
+    background-color: #ff8c00;
+  }
+  footer:hover a:hover {
+    background-color: none;
+    text-shadow: 5px 5px 8px #1e1e1e;
+    scale: 3;
+  }
+  footer:hover a:hover i {
+    color: #1e1e1e;
+  }
 }
-footer:hover a:hover {
-  background-color: none;
-  text-shadow: 5px 5px 8px #1e1e1e;
-  scale: 2;
-}
-footer:hover a:hover i {
-  color: #1e1e1e;
-}
-
 @media screen and (max-width: 1368px) {
   footer .socialmedia a i {
     margin-left: 5dvw;
@@ -264,9 +267,12 @@ body {
     background-color: var(--foreground);
     color: var(--background);
     max-width: 10rem;
-    height: 81.2dvh;
+    height: -moz-fit-content;
+    height: fit-content;
     z-index: 2;
     position: absolute;
+    left: 0;
+    top: calc(var(--hamburger-height) * 2);
   }
   .hamburger-menu:has(input:checked) + .sidebar {
     translate: 0;
@@ -279,7 +285,7 @@ body main {
 body main section {
   font-weight: bold;
   font-size: 24px;
-  height: 80dvh;
+  height: 78dvh;
   width: 95dvw;
   margin: 10px;
   border: 0;
@@ -291,19 +297,56 @@ body main section {
   flex-direction: row;
   flex-wrap: nowrap;
 }
-body main section .main-image {
-  height: 700px;
-}
 body main section .main-image img {
   justify-content: left;
-  width: 70%;
-  height: 70%;
+  width: 100%;
+  height: 100%;
 }
-body main section p {
+body main section .details {
+  margin-left: 25px;
+}
+body main section .details p {
   justify-content: right;
   order: 2;
 }
 
+.welcome {
+  animation-name: typing;
+  animation-duration: 1.5s;
+  animation-timing-function: steps(17);
+  animation-iteration-count: 1;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.welcome2 {
+  animation-name: typing2;
+  animation-duration: 1.5s;
+  animation-timing-function: steps(22);
+  animation-iteration-count: 1;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+}
+@keyframes typing2 {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
 @media screen and (max-width: 1368px) {
   body main aside {
     display: flex;
@@ -319,9 +362,17 @@ body main section p {
   }
   body main section .main-image img {
     justify-content: center;
-    width: 100%;
+    scale: 0.7;
   }
-  body main section .details p {
-    font-size: 80px;
+  body main section .details {
+    scale: 1.2;
+  }
+}
+@media screen and (max-width: 480px) {
+  body main section .main-image {
+    height: auto;
+  }
+  body main section p {
+    font-size: 20px;
   }
 }/*# sourceMappingURL=home.css.map */

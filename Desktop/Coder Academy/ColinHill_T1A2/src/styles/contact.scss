@@ -1,86 +1,95 @@
-@import "./utility";
-@import "./header";
-@import "./footer";
+@import "./styles.scss";
 
-
-
-
-
-main {
-    height: 75vh;
-    color: $textcolor;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: $boxcolor;
-    
-    form {
-        width: 80%;
-        .form-elements {
-            align-items: center;
+body {
+    main {
+        display: flex;
+        justify-content: center;
+        section {
+            font-weight: bold;
+            font-size: 24px;
+            height: 80dvh;
+            width: 95dvw;
+            margin: 10px;
+            border: 0;
+            padding: 0;
+            color: $textcolor;
             display: flex;
-            flex-direction: row;
-            margin-bottom: 24px;
-                                    
-            label {
-                font-size: 1.2rem;
-            }
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: $boxcolor;
+
+            form {
+                .form-elements {
+                    align-items: center;
+                    display: flex;
+                    flex-direction: row;
+                    margin-bottom: 24px;
+                                            
+                    label {
+                        font-size: 1.2rem;
+                    }
+                    
+                    .form-input {
+                        border: 1px solid $primarycolor;
+                        border-radius: 4px;
+                        outline: none;
+                        font-size: 1.2rem;
+                        align-items: center;
+                        width: 50dvw;
+                        
+                        &#form-textarea {
+                            resize: none;
+                        }
+                        
+                        &:not(#form-textarea) {
+                            height: 35px;
+                        }
+        
+                        &:focus {
+                            box-shadow: 0 0 10px 3px $primarycolor;
+                        }
+        
+                        &:hover {
+                            box-shadow: 0 0 10px 3px $secondarycolor;
+                        }
+                    }
+                }
+            }  
             
-            .form-input {
-                border: 1px solid $primarycolor;
-                border-radius: 4px;
-                outline: none;
-                font-size: 1.2rem;
-                width: 100%;
+            .btn-div {
                 align-items: center;
-                
-                &#form-textarea {
-                    resize: none;
-                }
-                
-                &:not(#form-textarea) {
-                    height: 35px;
-                }
-
-                &:focus {
-                    box-shadow: 0 0 10px 3px $primarycolor;
-                }
-
-                &:hover {
-                    box-shadow: 0 0 10px 3px $secondarycolor;
-                }
+                text-align: center;
+        
+                #submit {
+                    height: 40px;
+                    background-color: $primarycolor;
+                    border: none;
+                    min-width: 120px;
+                    font-size: 1.2rem;
+                    border-radius: 4px;
+                    margin-bottom: 24px;
+        
+                    &:hover {
+                            background-color: $secondarycolor;
+                    }
+                }        
             }
         }
-
-    }  
-    
-    .btn-div {
-        align-items: center;
-        text-align: center;
-
-        #submit {
-                height: 40px;
-                background-color: $primarycolor;
-                border: none;
-                min-width: 120px;
-                font-size: 1.2rem;
-                border-radius: 4px;
-                margin-bottom: 24px;
-
-                &:hover {
-                    background-color: $secondarycolor;
-                }
-        }        
     }
 }
 
 @media screen and (max-width: $tablet) {
-    main {
-        form {
-            .form-elements {
-                align-items: normal;
-                flex-direction: column;
+    body {
+        main {
+            section {
+                height: 78dvh;
+                form {
+                    .form-elements {
+                        align-items: normal;
+                        flex-direction: column;
+                    }
+                }
             }
         }
     }

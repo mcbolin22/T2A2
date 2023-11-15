@@ -1,21 +1,36 @@
-@import "./utility";
-@import "./header";
-@import "./footer";
+@import "./styles.scss";
 
-main {
-    section {
-        background-color: $boxcolor;
-        height: 90rvh;
-        width: 80rvw;
-        .blog1 {
-            background-color: red;
-            height: 100px;
-            width: 100px;
+body {
+    main {
+        display: flex;
+        justify-content: center;
+        section {
+            font-weight: bold;
+            font-size: 24px;
+            height: 78dvh;
+            width: 95dvw;
+            margin: 10px;
+            border: 0;
+            padding: 0;
+            background-color: $boxcolor;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: nowrap;
+
+            .blog1 {
+                background-color: red;
+                height: 100px;
+                width: 100px;
+            }
+            
+            .blog2 {
+                background-color: blue;
+                height: 100px;
+                width: 100px;
+            }
+
         }
-        .blog2 {
-            background-color: blue;
-            height: 100px;
-            width: 100px;
-        }
-    } 
+    }
 }

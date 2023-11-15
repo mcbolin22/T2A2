@@ -32,32 +32,46 @@
         </nav>
     </header>
     <main>
-        <h2 class="title">Contact me</h2>
-        <form>
-            <div class="form-elements">
-                <label for="">Name: </label>
-                <input class="form-input">
+        <label class="hamburger-menu">
+            <input type="checkbox" />
+          </label>
+          <aside class="sidebar">
+            <nav id="ham-nav">
+                <a href="./blog.html">Blog</a>
+                <a href="./about.html">About me</a>
+                <a href="./cv.html">Curriculum Vitae</a>
+                <a href="./services.html">Services</a>
+                <a href="./contact.html">Contact me</a>
+            </nav>
+        </aside>
+        <section>
+            <h2 class="title">Contact me</h2>
+            <form>
+                <div class="form-elements">
+                    <label for="">Name: </label>
+                    <input class="form-input">
+                </div>
+                <div class="form-elements" id="two">
+                    <label for="">Email: </label>
+                    <input class="form-input">
+                </div>
+                <div class="form-elements" id="three">
+                    <label for="">Subject: </label>
+                    <input class="form-input">
+                </div>
+                <div class="form-elements" id="four">
+                    <label for="">Reason: </label>
+                <textarea 
+                    class="form-input"
+                    rows="3"
+                    id="form-textarea"
+                ></textarea>
+                </div>
+            </form>
+            <div class="btn-div">
+                <button id="submit">Submit</button>
             </div>
-            <div class="form-elements" id="two">
-                <label for="">Email: </label>
-                <input class="form-input">
-            </div>
-            <div class="form-elements" id="three">
-                <label for="">Subject: </label>
-                <input class="form-input">
-            </div>
-            <div class="form-elements" id="four">
-                <label for="">Reason: </label>
-            <textarea 
-                class="form-input"
-                rows="3"
-                id="form-textarea"
-            ></textarea>
-            </div>
-        </form>
-        <div class="btn-div">
-            <button id="submit">Submit</button>
-        </div>
+        </section>
     </main>
     <footer>
         <div class="socialmedia">
