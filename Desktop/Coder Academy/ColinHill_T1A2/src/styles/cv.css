@@ -166,7 +166,7 @@ body {
 }
 
 @media screen and (min-width: 1368px) {
-  main label {
+  main .hamburger-menu {
     display: none;
   }
   main aside {
@@ -280,30 +280,65 @@ body {
 }
 body main {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: flex-start;
 }
-body main section {
+body main .cv {
+  font-size: 18px;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 75dvw;
+  margin: 10px;
+  border: 0;
+  padding: 0;
+  padding-right: 15px;
+  background-color: #d9d9d9;
+  display: flex;
+  justify-content: left;
+  align-items: flex-start;
+  flex-direction: column;
+}
+body main .cv h3 {
+  margin-left: 20px;
   font-weight: bold;
-  font-size: 24px;
-  height: 78dvh;
-  width: 95dvw;
+}
+body main .resume {
+  font-size: 18px;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 15dvw;
   margin: 10px;
   border: 0;
   padding: 0;
   background-color: #d9d9d9;
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
+  text-align: center;
 }
-body main section .blog1 {
-  background-color: red;
-  height: 100px;
-  width: 100px;
+body main .resume p {
+  margin-top: 0;
+  font-weight: bold;
 }
-body main section .blog2 {
-  background-color: blue;
-  height: 100px;
-  width: 100px;
+
+@media screen and (max-width: 1368px) {
+  body main {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  body main .cv {
+    width: 95dvw;
+  }
+}
+@media screen and (max-width: 480px) {
+  body main .cv {
+    font-size: 15px;
+  }
+  body main .resume {
+    width: -moz-fit-content;
+    width: fit-content;
+  }
 }/*# sourceMappingURL=cv.css.map */

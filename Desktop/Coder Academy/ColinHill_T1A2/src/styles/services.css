@@ -166,7 +166,7 @@ body {
 }
 
 @media screen and (min-width: 1368px) {
-  main label {
+  main .hamburger-menu {
     display: none;
   }
   main aside {
@@ -282,7 +282,7 @@ body main {
   display: flex;
   justify-content: center;
 }
-body main section {
+body main .main {
   font-weight: bold;
   font-size: 24px;
   height: 78dvh;
@@ -292,18 +292,57 @@ body main section {
   padding: 0;
   background-color: #d9d9d9;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-direction: row;
   flex-wrap: nowrap;
 }
-body main section .blog1 {
-  background-color: red;
-  height: 100px;
-  width: 100px;
+body main .main article {
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 20px;
+  border: 1px solid #ff8c00;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  background-color: #808080;
 }
-body main section .blog2 {
-  background-color: blue;
-  height: 100px;
-  width: 100px;
+body main .main article section .blog-image {
+  width: 400px;
+}
+body main .main article section h3 {
+  color: #ffffff;
+}
+
+@media screen and (min-width: 1369px) {
+  body main .main article:hover {
+    box-shadow: 5px 10px 8px #1e1e1e;
+    background-color: #ff8c00;
+    scale: 1.1;
+  }
+}
+@media screen and (max-width: 1368px) {
+  body main .main {
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  body main .main article section h3 {
+    padding: 10px;
+    margin: 0;
+  }
+}
+@media screen and (max-width: 480px) {
+  body main .main {
+    height: auto;
+  }
+  body main .main article {
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    margin: 5px;
+  }
+  body main .main article section .blog-image {
+    width: 300px;
+  }
 }/*# sourceMappingURL=services.css.map */

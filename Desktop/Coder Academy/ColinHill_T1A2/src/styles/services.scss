@@ -4,7 +4,7 @@ body {
     main {
         display: flex;
         justify-content: center;
-        section {
+        .main {
             font-weight: bold;
             font-size: 24px;
             height: 78dvh;
@@ -14,23 +14,87 @@ body {
             padding: 0;
             background-color: $boxcolor;
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
             flex-direction: row;
             flex-wrap: nowrap;
 
-            .blog1 {
-                background-color: red;
-                height: 100px;
-                width: 100px;
-            }
-            
-            .blog2 {
-                background-color: blue;
-                height: 100px;
-                width: 100px;
+            article {
+                width: fit-content;
+                margin: 20px;
+                border: 1px solid $secondarycolor;
+                border-radius: 8px;
+                overflow: hidden;
+                text-align: center;
+                background-color: $backgroundcolor;
+                section {
+                    .blog-image {
+                        width: 400px;
+                        
+                    }
+                    h3 {
+                        color: $primarycolor;
+                    }
+                }
             }
 
+        }
+    }
+}
+
+@media screen and (min-width: $desktop) {
+    body{
+        main{
+            .main{
+                article:hover {
+                    box-shadow: 5px 10px 8px $textcolor;
+                    background-color: $secondarycolor;
+                    scale: 1.1;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $tablet) {
+    body {
+        main {
+            .main{
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+                article {
+                    section {
+                        h3 {
+                            padding: 10px;
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+@media screen and (max-width: $phone) {
+    body {
+        main {
+            .main {
+                height: auto;
+                article {
+                    align-items: center;
+                    justify-content: center;
+                    width: 300px;
+                    margin: 5px;
+                    section {                        
+                        .blog-image{
+                            width: 300px
+                        }
+                    }
+                }
+                
+            }
         }
     }
 }

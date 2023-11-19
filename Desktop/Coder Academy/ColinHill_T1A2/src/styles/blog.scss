@@ -3,34 +3,62 @@
 body {
     main {
         display: flex;
+        flex-direction: column;
         justify-content: center;
+        align-items: center;
+        #bloglist {
+            display: flex;
+            justify-self: flex-start;
+            align-items: flex-start;
+
+            a {
+                text-decoration: none;
+                color: $textcolor;                    
+            }
+        }
         section {
             font-weight: bold;
             font-size: 24px;
-            height: 78dvh;
+            height: fit-content;
             width: 95dvw;
             margin: 10px;
             border: 0;
-            padding: 0;
+            padding: 5px;
             background-color: $boxcolor;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: row;
+            flex-direction: column;
             flex-wrap: nowrap;
-
-            .blog1 {
-                background-color: red;
-                height: 100px;
-                width: 100px;
+            img {
+                width: 50dvw;
             }
-            
-            .blog2 {
-                background-color: blue;
-                height: 100px;
-                width: 100px;
+            p {
+                font-size: 20px;
             }
+            .date {
+                font-style: italic;
+            }
+        }
+    }
+}
 
+
+
+@media screen and (max-width: $phone) {
+    body {
+        main {
+            section {
+                img {
+                    width: 95dvw;
+                }
+                p {
+                    font-size: 15px;
+                }
+                a {
+                    font-size: 15px;
+                }
+            }
         }
     }
 }

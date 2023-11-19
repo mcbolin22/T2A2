@@ -166,7 +166,7 @@ body {
 }
 
 @media screen and (min-width: 1368px) {
-  main label {
+  main .hamburger-menu {
     display: none;
   }
   main aside {
@@ -280,30 +280,53 @@ body {
 }
 body main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+body main #bloglist {
+  display: flex;
+  justify-self: flex-start;
+  align-items: flex-start;
+}
+body main #bloglist a {
+  text-decoration: none;
+  color: #1e1e1e;
 }
 body main section {
   font-weight: bold;
   font-size: 24px;
-  height: 78dvh;
+  height: -moz-fit-content;
+  height: fit-content;
   width: 95dvw;
   margin: 10px;
   border: 0;
-  padding: 0;
+  padding: 5px;
   background-color: #d9d9d9;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
 }
-body main section .blog1 {
-  background-color: red;
-  height: 100px;
-  width: 100px;
+body main section img {
+  width: 50dvw;
 }
-body main section .blog2 {
-  background-color: blue;
-  height: 100px;
-  width: 100px;
+body main section p {
+  font-size: 20px;
+}
+body main section .date {
+  font-style: italic;
+}
+
+@media screen and (max-width: 480px) {
+  body main section img {
+    width: 95dvw;
+  }
+  body main section p {
+    font-size: 15px;
+  }
+  body main section a {
+    font-size: 15px;
+  }
 }/*# sourceMappingURL=blog.css.map */

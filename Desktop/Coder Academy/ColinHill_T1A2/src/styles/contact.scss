@@ -4,6 +4,8 @@ body {
     main {
         display: flex;
         justify-content: center;
+        flex-direction: column;
+        align-items: center;
         section {
             font-weight: bold;
             font-size: 24px;
@@ -24,6 +26,7 @@ body {
                     align-items: center;
                     display: flex;
                     flex-direction: row;
+                    justify-content: space-between;
                     margin-bottom: 24px;
                                             
                     label {
@@ -35,7 +38,6 @@ body {
                         border-radius: 4px;
                         outline: none;
                         font-size: 1.2rem;
-                        align-items: center;
                         width: 50dvw;
                         
                         &#form-textarea {
@@ -78,6 +80,7 @@ body {
         }
     }
 }
+
 
 @media screen and (max-width: $tablet) {
     body {

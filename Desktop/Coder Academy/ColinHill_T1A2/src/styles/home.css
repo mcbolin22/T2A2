@@ -166,7 +166,7 @@ body {
 }
 
 @media screen and (min-width: 1368px) {
-  main label {
+  main .hamburger-menu {
     display: none;
   }
   main aside {

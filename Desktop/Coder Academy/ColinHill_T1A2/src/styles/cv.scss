@@ -3,34 +3,74 @@
 body {
     main {
         display: flex;
-        justify-content: center;
-        section {
-            font-weight: bold;
-            font-size: 24px;
-            height: 78dvh;
-            width: 95dvw;
+        justify-content: space-around;
+        flex-direction: row;
+        align-items: flex-start;
+        .cv {
+            font-size: 18px;
+            height: fit-content;
+            width: 75dvw;
+            margin: 10px;
+            border: 0;
+            padding: 0;
+            padding-right: 15px;
+            background-color: $boxcolor;
+            display: flex;
+            justify-content: left;
+            align-items: flex-start;
+            flex-direction: column;
+
+            h3 {
+                margin-left: 20px;
+                font-weight: bold;
+            }
+        }
+        .resume {
+            font-size: 18px;
+            height: fit-content;
+            width: 15dvw;
             margin: 10px;
             border: 0;
             padding: 0;
             background-color: $boxcolor;
             display: flex;
             justify-content: center;
-            align-items: center;
-            flex-direction: row;
+            flex-direction: column;
             flex-wrap: nowrap;
+            text-align: center;
+        
 
-            .blog1 {
-                background-color: red;
-                height: 100px;
-                width: 100px;
+            p {
+                margin-top: 0;
+                font-weight: bold;
             }
-            
-            .blog2 {
-                background-color: blue;
-                height: 100px;
-                width: 100px;
-            }
-
         }
     }
+}
+
+@media screen and (max-width: $tablet) {
+    body {
+        main {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .cv {
+                width: 95dvw;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $phone) {
+    body {
+        main {
+            .cv {
+                font-size: 15px;
+            }
+            .resume {
+                width: fit-content;
+            }
+        }
+    }
+    
 }
