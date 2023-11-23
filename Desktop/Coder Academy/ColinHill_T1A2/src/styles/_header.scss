@@ -1,6 +1,7 @@
+// This imports my utility stylesheet
 @import "./utility";
 
-// Regular Menu
+// Desktop sized header Menu
 header {
     @include background-stuff();
     padding: 20px;
@@ -33,6 +34,7 @@ header {
     }
 }
 
+// Interactive colour changes within desktop view
 @media screen and (min-width: $desktop) {
     header:hover {
         background-color: $secondarycolor;
@@ -44,7 +46,7 @@ header {
     }
 }
 
-
+// Appearance change into tablet and phone view
 @media screen and (max-width: $tablet){
     header {
         height: 10vh; 
@@ -54,8 +56,6 @@ header {
         background-color: $secondarycolor;
 
         .logo {
-            
-
             a {
                 color: $textcolor;
                 font-weight: bold;
@@ -78,8 +78,3 @@ header {
         }
     }
 }
-
-@media screen and (max-width: $phone) {
-
-}
- 

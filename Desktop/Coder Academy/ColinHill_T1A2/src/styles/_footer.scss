@@ -1,5 +1,7 @@
+// This imports my utility stylesheet
 @import "./utility";
 
+// Desktop sized footer menu
 footer {
     @include background-stuff();
     justify-content: space-between;
@@ -7,9 +9,9 @@ footer {
     flex-direction: row;
     align-self: flex-end;
     margin: 0px;
+    
+// Appearance and position settings for social media icons and top line of text
     .socialmedia {
-              
-        
         a {
             text-decoration: none;
             justify-content: flex-start;
@@ -33,6 +35,7 @@ footer {
         }
         
     }
+// Appearance and positioning bottom line of text
     .info {
         color: $primarycolor;
         display: flex;
@@ -40,14 +43,10 @@ footer {
         justify-content: flex-end;
         align-items: flex-end;
         margin-top: 0;
-
-
-        // p {
-        //     font-weight: bold;
-        // }
     }
 }
 
+// Interactive colour changes within desktop view
 @media screen and (min-width: $desktop){
     footer:hover {
         background-color: $secondarycolor;
@@ -62,20 +61,7 @@ footer {
     }
 }
 
-@media screen and (max-width: $tablet) {
-    footer {
-        .socialmedia {
-            a {
-                i {
-                    margin-left: 5dvw;
-                    margin-right: 5dvh;
-                }
-            }
-        }
-    }
-}
-
-
+// Appearance change into tablet and phone view
 @media screen and (max-width: $tablet) {
     footer {
         height: 10vh;
@@ -93,6 +79,8 @@ footer {
             a {
                 width: 0px;
                 i {
+                    margin-left: 5dvw;
+                    margin-right: 5dvh;
                     color: $textcolor;
                 }
             }

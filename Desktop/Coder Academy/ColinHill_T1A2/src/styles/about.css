@@ -130,12 +130,6 @@ footer .info {
   }
 }
 @media screen and (max-width: 1368px) {
-  footer .socialmedia a i {
-    margin-left: 5dvw;
-    margin-right: 5dvh;
-  }
-}
-@media screen and (max-width: 1368px) {
   footer {
     height: 10vh;
     background-color: #ff8c00;
@@ -154,6 +148,8 @@ footer .info {
     width: 0px;
   }
   footer .socialmedia a i {
+    margin-left: 5dvw;
+    margin-right: 5dvh;
     color: #1e1e1e;
   }
   footer .info {
@@ -280,30 +276,42 @@ body {
 }
 body main {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 body main section {
-  font-weight: bold;
   font-size: 24px;
-  height: 78dvh;
-  width: 95dvw;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 45dvw;
   margin: 10px;
   border: 0;
-  padding: 0;
+  padding: 10px;
   background-color: #d9d9d9;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  flex-direction: column;
 }
-body main section .blog1 {
-  background-color: red;
-  height: 100px;
-  width: 100px;
+body main .img {
+  width: -moz-fit-content;
+  width: fit-content;
 }
-body main section .blog2 {
-  background-color: blue;
-  height: 100px;
-  width: 100px;
+body main .img img {
+  width: 500px;
+}
+
+@media screen and (max-width: 1020px) {
+  body main {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  body main section {
+    width: 95dvw;
+  }
+  body main .img img {
+    width: 90dvw;
+  }
 }/*# sourceMappingURL=about.css.map */

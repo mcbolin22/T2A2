@@ -1,20 +1,23 @@
-
+// Breakpoint variables
 $phone: 480px;
+$custom: 1020px;
 $tablet: 1368px;
 $desktop: 1369px;
 
+// Colour variables
 $primarycolor: #ffffff;
 $secondarycolor: #ff8c00;
 $textcolor: #1e1e1e;
 $backgroundcolor: #808080;
 $boxcolor: #d9d9d9;
 
+// Default style for every page
 body {
     background-color: $backgroundcolor;
     font-family: "Special Elite";
-    // font-weight: bold;
 }
 
+// Mixin reference for Header and Footer
 @mixin background-stuff {
     background-color: $textcolor;
     padding: 5px;

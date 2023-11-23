@@ -130,12 +130,6 @@ footer .info {
   }
 }
 @media screen and (max-width: 1368px) {
-  footer .socialmedia a i {
-    margin-left: 5dvw;
-    margin-right: 5dvh;
-  }
-}
-@media screen and (max-width: 1368px) {
   footer {
     height: 10vh;
     background-color: #ff8c00;
@@ -154,6 +148,8 @@ footer .info {
     width: 0px;
   }
   footer .socialmedia a i {
+    margin-left: 5dvw;
+    margin-right: 5dvh;
     color: #1e1e1e;
   }
   footer .info {

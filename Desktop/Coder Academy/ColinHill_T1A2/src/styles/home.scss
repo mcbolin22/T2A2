@@ -1,5 +1,7 @@
+// Imports the main components
 @import "./styles.scss";
 
+// Standardised style between pages for conformity
 body {
     main {
         display: flex;
@@ -18,6 +20,8 @@ body {
             align-items: center;
             flex-direction: row;
             flex-wrap: nowrap;
+
+// Individual page requirements for content functionality purposes
             .main-image {
                 img {
                     justify-content: left;
@@ -37,6 +41,7 @@ body {
     }
 }
 
+// Animation for typing effect
 .welcome {
     animation-name: typing;
     animation-duration: 1.5s;
@@ -57,7 +62,7 @@ body {
 }
 
 
-
+// Animation specifications
 @keyframes typing {
     0% {
         width: 0;
@@ -79,7 +84,7 @@ body {
     }
 }
 
-
+// Specifications for tablet view
 @media screen and (max-width: $tablet) {
     body {
         main {
@@ -106,6 +111,7 @@ body {
     }  
 }
 
+// Specifications for phone view
 @media screen and (max-width: $phone) {
     body {
         main {

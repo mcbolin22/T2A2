@@ -1,6 +1,7 @@
+// This imports my utility stylesheet
 @import "./utility";
 
-// Hamburger Sidebar
+// Hamburger Sidebar only to appear when in tablet mode
 @media screen and (min-width: $tablet) {
     main {
         .hamburger-menu {
@@ -12,126 +13,139 @@
     }
 }
 
-
+// Breakpoint to ensure sidebar only works in tablet view or smaller
 @media screen and (max-width: $tablet) {
 
-#ham-nav {
+// Layout of the side bar and links to other pages
+    #ham-nav {
+        display: flex;
+        flex-direction: column;
+
+        a {
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: $primarycolor;
+            margin-bottom: 40px;
+        }
+        
+    }
+
+// This sets the universal selector (all elements) to border box which accounts for 
+// the padding and the border when sizing the boxes
+    *,
+    *::after,
+    *::before {
+    box-sizing: border-box;
+    }
+
+// This ensures the sidebar is pushed all the way to the side of the screen when shown
+    body {
+    margin: 0;
+    }
+
+// These are the variables used within the stylesheet
+    :root {
+    --bar-width: 60px;
+    --bar-height: 8px;
+    --hamburger-gap: 6px;
+    --foreground: #1e1e1e;
+    --background: #ffffff;
+    --hamburger-margin: 15px;
+    --animation-timing: 200ms ease-in-out;
+    --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
+    }
+
+// This sets how the hamburger looks before being selected 
+    .hamburger-menu {
+    --x-width: calc(var(--hamburger-height) * 1.41421356237);
+
     display: flex;
     flex-direction: column;
-
-    a {
-        font-size: 1.2rem;
-        text-decoration: none;
-        color: $primarycolor;
-        margin-bottom: 40px;
+    gap: var(--hamburger-gap);
+    width: max-content;
+    position: absolute;
+    top: var(--hamburger-margin);
+    left: var(--hamburger-margin);
+    z-index: 2;
+    cursor: pointer;
     }
-    
-}
 
+// This gives colours to the hamburger once it has been selected
+    .hamburger-menu:has(input:checked) {
+    --foreground: #1e1e1e;
+    --background: #ffffff;
+    }
 
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-}
+// This improves accesibility that highlights the hamburger if selected via keyboard
+    .hamburger-menu:has(input:focus-visible)::before,
+    .hamburger-menu:has(input:focus-visible)::after,
+    .hamburger-menu input:focus-visible {
+    border: 1px solid var(--background);
+    box-shadow: 0 0 0 1px var(--foreground);
+    }
 
-body {
-  margin: 0;
-}
+// These are the settings for the animation once selected
+    .hamburger-menu::before,
+    .hamburger-menu::after,
+    .hamburger-menu input {
+    content: "";
+    width: var(--bar-width);
+    height: var(--bar-height);
+    background-color: var(--foreground);
+    border-radius: 9999px;
+    transform-origin: left center;
+    transition: opacity var(--animation-timing), width var(--animation-timing),
+        rotate var(--animation-timing), translate var(--animation-timing),
+        background-color var(--animation-timing);
+    }
 
-:root {
-  --bar-width: 60px;
-  --bar-height: 8px;
-  --hamburger-gap: 6px;
-  --foreground: #1e1e1e;
-  --background: #ffffff;
-  --hamburger-margin: 15px;
-  --animation-timing: 200ms ease-in-out;
-  --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2);
-}
+// This removes the default appearance and function of the checkbox
+    .hamburger-menu input {
+    appearance: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    pointer-events: none;
+    }
 
-.hamburger-menu {
-  --x-width: calc(var(--hamburger-height) * 1.41421356237);
+// This uses trigonometry to translate the bar width and angle for the appropriate animation effect
+    .hamburger-menu:has(input:checked)::before {
+    rotate: 45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / -2);
+    }
 
-  display: flex;
-  flex-direction: column;
-  gap: var(--hamburger-gap);
-  width: max-content;
-  position: absolute;
-  top: var(--hamburger-margin);
-  left: var(--hamburger-margin);
-  z-index: 2;
-  cursor: pointer;
-}
+// This also uses trigonometry to translate the bar width and angle for the appropriate animation effect
+    .hamburger-menu:has(input:checked)::after {
+    rotate: -45deg;
+    width: var(--x-width);
+    translate: 0 calc(var(--bar-height) / 2);
+    }
 
-.hamburger-menu:has(input:checked) {
-  --foreground: #1e1e1e;
-  --background: #ffffff;
-}
+// This makes the middle bar of the hamburger disappear when selected
+    .hamburger-menu input:checked {
+    opacity: 0;
+    width: 0;
+    }
 
-.hamburger-menu:has(input:focus-visible)::before,
-.hamburger-menu:has(input:focus-visible)::after,
-.hamburger-menu input:focus-visible {
-  border: 1px solid var(--background);
-  box-shadow: 0 0 0 1px var(--foreground);
-}
+// This is the appearance and animation setting for the sidebar itself
+    .sidebar {
+    transition: translate var(--animation-timing);
+    translate: -100%;
+    padding: 0.5rem 1rem;
+    padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
+    background-color: var(--foreground);
+    color: var(--background);
+    max-width: 10rem;
+    height: fit-content;
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: calc(var(--hamburger-height) * 2);
+    }
 
-.hamburger-menu::before,
-.hamburger-menu::after,
-.hamburger-menu input {
-  content: "";
-  width: var(--bar-width);
-  height: var(--bar-height);
-  background-color: var(--foreground);
-  border-radius: 9999px;
-  transform-origin: left center;
-  transition: opacity var(--animation-timing), width var(--animation-timing),
-    rotate var(--animation-timing), translate var(--animation-timing),
-    background-color var(--animation-timing);
-}
-
-.hamburger-menu input {
-  appearance: none;
-  padding: 0;
-  margin: 0;
-  outline: none;
-  pointer-events: none;
-}
-
-.hamburger-menu:has(input:checked)::before {
-  rotate: 45deg;
-  width: var(--x-width);
-  translate: 0 calc(var(--bar-height) / -2);
-}
-
-.hamburger-menu:has(input:checked)::after {
-  rotate: -45deg;
-  width: var(--x-width);
-  translate: 0 calc(var(--bar-height) / 2);
-}
-
-.hamburger-menu input:checked {
-  opacity: 0;
-  width: 0;
-}
-
-.sidebar {
-  transition: translate var(--animation-timing);
-  translate: -100%;
-  padding: 0.5rem 1rem;
-  padding-top: calc(var(--hamburger-height) + var(--hamburger-margin) + 1rem);
-  background-color: var(--foreground);
-  color: var(--background);
-  max-width: 10rem;
-  height: fit-content;
-  z-index: 2;
-  position: absolute;
-  left: 0;
-  top: calc(var(--hamburger-height) * 2);
-}
-
-.hamburger-menu:has(input:checked) + .sidebar {
-  translate: 0;
-}
+    .hamburger-menu:has(input:checked) + .sidebar {
+    translate: 0;
+    }
 
 }

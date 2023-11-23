@@ -1,36 +1,57 @@
+// Imports the main components
 @import "./styles.scss";
 
+// Standardised style between pages for conformity
 body {
     main {
         display: flex;
-        justify-content: center;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+
+// Individual page requirements for content functionality purposes
         section {
-            font-weight: bold;
             font-size: 24px;
-            height: 78dvh;
-            width: 95dvw;
+            height: fit-content;
+            width: 45dvw;
             margin: 10px;
             border: 0;
-            padding: 0;
+            padding: 10px;
             background-color: $boxcolor;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: row;
-            flex-wrap: nowrap;
-
-            .blog1 {
-                background-color: red;
-                height: 100px;
-                width: 100px;
-            }
+            flex-direction: column;
             
-            .blog2 {
-                background-color: blue;
-                height: 100px;
-                width: 100px;
-            }
+        }
 
+        .img {
+            width: fit-content;
+
+            img {
+                width: 500px;
+            }
+        }
+    }
+}
+
+// Specifications for custom tablet view due to aesthetic choices
+@media screen and (max-width: $custom) {
+    body {
+        main {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            section {
+                width: 95dvw;
+            }
+    
+            .img {
+                img {
+                    width: 90dvw;
+                }
+            }
         }
     }
 }

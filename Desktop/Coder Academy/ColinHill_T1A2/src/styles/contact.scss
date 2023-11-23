@@ -1,11 +1,15 @@
+// Imports the main components
 @import "./styles.scss";
 
+// Standardised style between pages for conformity
 body {
     main {
         display: flex;
         justify-content: center;
         flex-direction: column;
         align-items: center;
+
+// Individual page requirements for content functionality purposes
         section {
             font-weight: bold;
             font-size: 24px;
@@ -21,6 +25,7 @@ body {
             justify-content: center;
             background-color: $boxcolor;
 
+// Styling content for the interactive elements within the page
             form {
                 .form-elements {
                     align-items: center;
@@ -58,7 +63,8 @@ body {
                     }
                 }
             }  
-            
+
+// Styling elements for the button below the form
             .btn-div {
                 align-items: center;
                 text-align: center;
@@ -81,7 +87,7 @@ body {
     }
 }
 
-
+// Specifications for tablet view
 @media screen and (max-width: $tablet) {
     body {
         main {

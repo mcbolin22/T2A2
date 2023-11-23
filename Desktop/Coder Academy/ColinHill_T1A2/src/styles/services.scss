@@ -1,5 +1,7 @@
+// Imports the main components
 @import "./styles.scss";
 
+// Standardised style between pages for conformity
 body {
     main {
         display: flex;
@@ -19,6 +21,7 @@ body {
             flex-direction: row;
             flex-wrap: nowrap;
 
+// Individual page requirements for content functionality purposes
             article {
                 width: fit-content;
                 margin: 20px;
@@ -42,6 +45,7 @@ body {
     }
 }
 
+// Interactive animation within desktop view
 @media screen and (min-width: $desktop) {
     body{
         main{
@@ -56,6 +60,7 @@ body {
     }
 }
 
+// Specifications for tablet view
 @media screen and (max-width: $tablet) {
     body {
         main {
@@ -77,6 +82,7 @@ body {
     
 }
 
+// Specifications for phone view
 @media screen and (max-width: $phone) {
     body {
         main {
