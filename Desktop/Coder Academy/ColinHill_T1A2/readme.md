@@ -1,10 +1,7 @@
 # T1A2_Portfolio
 
-### Published portfolio website link:
-
-
 ### GitHub repo link:
-
+https://github.com/mcbolin22/T1A2Portfolio.git
 
 ### Presentation video link:
 
@@ -14,11 +11,17 @@
 The purpose of this website is to provide an online portfolio that provides information about me, my skills, interests, professional knowledge and a showcase of my work.
 
 #### Functionality / features
-
+- Header
+- Footer
+- Sidebar in tablet view
+- Images
+- Animation
+- External Links
 
 #### Sitemap
 The following image shows the sitemap:
 
+! [Sitemap](./ppt/images/Sitemap.png)
 
 #### Screenshots
 

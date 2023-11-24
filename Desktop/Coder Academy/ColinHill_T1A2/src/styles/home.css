@@ -288,22 +288,13 @@ body main section {
   padding: 0;
   background-color: #d9d9d9;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-direction: row;
   flex-wrap: nowrap;
 }
 body main section .main-image img {
-  justify-content: left;
-  width: 100%;
-  height: 100%;
-}
-body main section .details {
-  margin-left: 25px;
-}
-body main section .details p {
-  justify-content: right;
-  order: 2;
+  height: 70dvh;
 }
 
 .welcome {
@@ -344,29 +335,24 @@ body main section .details p {
   }
 }
 @media screen and (max-width: 1368px) {
-  body main aside {
-    display: flex;
-    justify-self: start;
-  }
   body main section {
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 0px;
     font-size: 1.2rem;
   }
-  body main section .main-image {
-    height: 700px;
-  }
   body main section .main-image img {
-    justify-content: center;
-    scale: 0.7;
+    height: auto;
+    width: 80dvw;
   }
   body main section .details {
     scale: 1.2;
   }
 }
 @media screen and (max-width: 480px) {
-  body main section .main-image {
-    height: auto;
+  body main section .main-image img {
+    width: 95dvw;
   }
   body main section p {
     font-size: 20px;
