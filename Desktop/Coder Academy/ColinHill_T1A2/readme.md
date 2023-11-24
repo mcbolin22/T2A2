@@ -24,7 +24,9 @@ The following image shows the sitemap:
 ! [Sitemap](./ppt/images/Sitemap.png)
 
 #### Screenshots
+The following link will take you to a repo that has all screenshots included:
 
+! [Screenshots]()
 
 #### Target audience
 The target audience for the portfolio website is an employer looking to engage a dev and/or IT professional. The employer is expected to have the following knowledge and expectations:
