@@ -35,37 +35,37 @@ def seed_tables():
     ]
     
     db.session.add_all(users)
-
+    db.session.commit()
     polls = [
         Poll(
             title="Poll 1",
             description="Poll 1 desc",
             created_at=date.today(),
-            user_id=users[0]
+            user=users[0]
         ),
         Poll(
             title="Poll 2",
             description="Poll 2 desc",
             created_at=date.today(),
-            user_id=users[1]
+            user=users[1]
         )
     ]
 
     db.session.add_all(polls)
-
+    db.session.commit()
     options = [
         Option(
             text="Option 1",
-            poll_id=polls[0]
+            poll=polls[0]
         ),
         Option(
             text="Option 2",
-            poll_id=polls[1]
+            poll=polls[1]
         )
     ]
 
     db.session.add_all(options)
-
+    db.session.commit()
     votes = [
         Vote(
             user_id=users[0],

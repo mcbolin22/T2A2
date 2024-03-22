@@ -15,6 +15,7 @@ class Poll(db.Model):
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
+    user = db.relationship("User", back_populates="polls")
     options = db.relationship("Option", back_populates="polls")
     votes = db.relationship("Vote", back_populates="polls")
 
@@ -29,7 +30,7 @@ class PollSchema(ma.Schema):
     user_id = fields.Integer()
 
     class Meta:
-        fields = ('id', 'title', 'description', 'created_at', 'user_id')
+        fields = ('id', 'title', 'description', 'created_at', 'user')
     
 
 poll_schema = PollSchema()

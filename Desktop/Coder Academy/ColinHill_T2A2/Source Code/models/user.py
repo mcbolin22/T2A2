@@ -9,7 +9,7 @@ class User(db.Model):
     email = db.Column(db.String, nullable=False, unique=True)
     is_admin = db.Column(db.Boolean, default=False)
 
-    polls = db.relationship("Poll", back_populates="user")
+    polls = db.relationship("Poll", back_populates="users")
 
 
 
