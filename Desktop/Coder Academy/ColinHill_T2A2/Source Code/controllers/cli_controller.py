@@ -19,7 +19,6 @@ def create_tables():
 def drop_tables():
     db.drop_all()
     print("Tables dropped")
-
 @db_commands.cli.command('seed')
 def seed_tables():
     users = [
@@ -36,51 +35,60 @@ def seed_tables():
     
     db.session.add_all(users)
     db.session.commit()
+
+    user1 = User.query.filter_by(name="admin").first()
+    user2 = User.query.filter_by(name="User 1").first()
+
     polls = [
         Poll(
             title="Poll 1",
             description="Poll 1 desc",
             created_at=date.today(),
-            user=users[0]
+            user=user1.id
         ),
         Poll(
             title="Poll 2",
             description="Poll 2 desc",
             created_at=date.today(),
-            user=users[1]
+            user=user2.id
         )
     ]
 
     db.session.add_all(polls)
     db.session.commit()
+
+    poll1 = Poll.query.filter_by(title="Poll 1").first()
+    poll2 = Poll.query.filter_by(title="Poll 2").first()
+
     options = [
         Option(
             text="Option 1",
-            poll=polls[0]
+            poll=poll1.id
         ),
         Option(
             text="Option 2",
-            poll=polls[1]
+            poll=poll2.id
         )
     ]
 
     db.session.add_all(options)
     db.session.commit()
+
+    option1 = Option.query.filter_by(text="Option 1").first()
+    option2 = Option.query.filter_by(text="Option 2").first()
+
     votes = [
         Vote(
-            user_id=users[0],
-            option_id=options[0]
+            user_id=user1.id,
+            option_id=option1.id
         ),
         Vote(
-            user_id=users[1],
-            option_id=options[1]
+            user_id=user2.id,
+            option_id=option2.id
         )
     ]
 
     db.session.add_all(votes)
-
-
-
     db.session.commit()
 
     print("Tables seeded")

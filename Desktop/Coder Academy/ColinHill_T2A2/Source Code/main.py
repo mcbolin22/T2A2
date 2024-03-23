@@ -33,4 +33,16 @@ def create_app():
     from controllers.poll_controller import polls_bp
     app.register_blueprint(polls_bp)
 
+    with app.app_context():
+        from models.user import User  # import User model
+        from models.poll import Poll  # import Poll model
+        from models.vote import Vote  # import Vote model
+        from models.option import Option
+        from schemas import UserSchema, PollSchema, VoteSchema, OptionSchema  # import all your schemas here
+        db.create_all()
+
     return app
+
+if __name__ == "__main__":
+    app = create_app()
+    app.run(debug=True)

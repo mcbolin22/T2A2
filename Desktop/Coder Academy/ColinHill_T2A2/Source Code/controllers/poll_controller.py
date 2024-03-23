@@ -268,7 +268,7 @@ def vote(poll_id):
 
         # Check if user already voted in this poll
         user_id = get_jwt_identity()
-        existing_vote = Vote.query.filter_by(poll_id=poll_id, user_id=user_id).first()
+        existing_vote = Vote.query.filter_by(option_id=option_id, user_id=user_id).first()
         if existing_vote:
             return jsonify({'error': "You already voted in this poll"}), 409
 
