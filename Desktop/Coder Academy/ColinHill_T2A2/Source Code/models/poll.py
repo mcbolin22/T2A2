@@ -1,6 +1,5 @@
 # Import necessary modules and functions
 from datetime import datetime
-from .schemas import PollSchema
 from marshmallow import fields, validates, Schema
 from marshmallow.validate import Length, And, Regexp, OneOf
 from marshmallow.exceptions import ValidationError
@@ -25,5 +24,3 @@ class Poll(db.Model):
     options = db.relationship("Option", back_populates="poll")  # A poll can have many options
     votes = db.relationship('Vote', back_populates='poll', lazy=True)  # A poll can have many votes
 
-poll_schema = PollSchema()  # Create an instance of the PollSchema class
-polls_schema = PollSchema(many=True)  # Create an instance of the PollSchema class for multiple polls

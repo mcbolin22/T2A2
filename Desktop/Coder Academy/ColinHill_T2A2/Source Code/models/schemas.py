@@ -2,7 +2,11 @@ from init import ma
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema, auto_field
 from marshmallow_sqlalchemy.fields import Nested
 from marshmallow import post_load, validate
-from models import User, Poll, Vote, Option  # import your models here
+# import your models here
+from models.user import User
+from models.poll import Poll
+from models.vote import Vote
+from models.option import Option
 
 # UserSchema represents the User table in the database
 class UserSchema(SQLAlchemyAutoSchema):
@@ -21,6 +25,9 @@ class UserSchema(SQLAlchemyAutoSchema):
     # 'votes' represents the one-to-many relationship between User and Vote
     polls = Nested('PollSchema', many=True, exclude=('user',))
     votes = Nested('VoteSchema', many=True, exclude=('user',))
+
+user_schema = UserSchema()  # Create an instance of UserSchema
+users_schema = UserSchema(many=True)  # Create an instance of UserSchema for multiple users
 
 # PollSchema represents the Poll table in the database
 class PollSchema(SQLAlchemyAutoSchema):
@@ -43,6 +50,9 @@ class PollSchema(SQLAlchemyAutoSchema):
     options = Nested('OptionSchema', many=True)
     votes = Nested('VoteSchema', many=True, exclude=('poll',))
 
+poll_schema = PollSchema()  # Create an instance of PollSchema
+polls_schema = PollSchema(many=True)  # Create an instance of PollSchema for multiple polls
+
 # VoteSchema represents the Vote table in the database
 class VoteSchema(SQLAlchemyAutoSchema):
     class Meta:
@@ -63,6 +73,9 @@ class VoteSchema(SQLAlchemyAutoSchema):
     option = Nested('OptionSchema', exclude=('votes',))
     poll = Nested('PollSchema', exclude=('votes',))
 
+vote_schema = VoteSchema()  # Create an instance of VoteSchema
+votes_schema = VoteSchema(many=True)  # Create an instance of VoteSchema for multiple votes
+
 # OptionSchema represents the Option table in the database
 class OptionSchema(SQLAlchemyAutoSchema):
     class Meta:
@@ -79,3 +92,6 @@ class OptionSchema(SQLAlchemyAutoSchema):
     # 'votes' represents the one-to-many relationship between Option and Vote
     poll = Nested('PollSchema', exclude=('options',))
     votes = Nested('VoteSchema', many=True, exclude=('option',))
+
+option_schema = OptionSchema()  # Create an instance of OptionSchema
+options_schema = OptionSchema(many=True)  # Create an instance of OptionSchema for multiple options

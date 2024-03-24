@@ -1,6 +1,5 @@
 # Import necessary modules and functions
 from init import db, ma
-from .schemas import UserSchema
 from marshmallow import fields, Schema, post_load
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema, auto_field
 from marshmallow_sqlalchemy.fields import Nested
@@ -18,9 +17,8 @@ class User(db.Model):
     is_admin = db.Column(db.Boolean, default=False)  # 'is_admin' is a boolean column with a default value of False
 
     # Define the relationships with the 'polls' and 'votes' tables
-    polls = db.relationship('Poll', backref='user', lazy=True)  # A user can have many polls
+    polls = db.relationship('Poll', back_populates='user', lazy=True)  # A user can have many polls
     votes = db.relationship('Vote', back_populates='user')  # A user can have many votes
 
-user_schema = UserSchema()  # Create an instance of the UserSchema class
-users_schema = UserSchema(many=True)  # Create an instance of the UserSchema class for multiple users
+
 

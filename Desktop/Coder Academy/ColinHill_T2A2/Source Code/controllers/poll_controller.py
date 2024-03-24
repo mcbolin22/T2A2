@@ -5,10 +5,11 @@ from flask_jwt_extended import jwt_required, get_jwt_identity
 from sqlalchemy.exc import IntegrityError
 
 from init import db
-from models.user import User, user_schema, users_schema
-from models.poll import Poll, polls_schema, poll_schema
-from models.option import Option, option_schema, options_schema
-from models.vote import Vote, vote_schema
+from models.user import User
+from models.poll import Poll
+from models.option import Option
+from models.vote import Vote
+from models.schemas import user_schema, users_schema, poll_schema, polls_schema, option_schema, options_schema, vote_schema, votes_schema
 
 polls_bp = Blueprint('polls', __name__, url_prefix='/polls')
 

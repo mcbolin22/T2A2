@@ -1,6 +1,5 @@
 # Import necessary modules and functions
 from init import db, ma
-from .schemas import VoteSchema
 from marshmallow import fields, Schema
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema, auto_field
 from marshmallow_sqlalchemy.fields import Nested
@@ -19,6 +18,3 @@ class Vote(db.Model):
     user = db.relationship('User', back_populates='votes')  # A vote is associated with one user
     option = db.relationship('Option', back_populates='votes')  # A vote is associated with one option
     poll = db.relationship('Poll', back_populates='votes')  # A vote is associated with one poll
-
-vote_schema = VoteSchema()  # Create an instance of the VoteSchema class
-votes_schema = VoteSchema(many=True)  # Create an instance of the VoteSchema class for multiple votes

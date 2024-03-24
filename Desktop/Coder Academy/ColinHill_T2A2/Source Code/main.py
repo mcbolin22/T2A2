@@ -38,7 +38,7 @@ def create_app():
         from models.poll import Poll  # import Poll model
         from models.vote import Vote  # import Vote model
         from models.option import Option
-        from schemas import UserSchema, PollSchema, VoteSchema, OptionSchema  # import all your schemas here
+        from models.schemas import UserSchema, PollSchema, VoteSchema, OptionSchema  # import all your schemas here
         db.create_all()
 
     return app

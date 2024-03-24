@@ -1,6 +1,5 @@
 # Import necessary modules and functions
 from init import db, ma
-from .schemas import OptionSchema
 from marshmallow import fields, Schema
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema, auto_field
 from marshmallow_sqlalchemy.fields import Nested
@@ -17,6 +16,3 @@ class Option(db.Model):
     # Define the relationships with the 'polls' and 'votes' tables
     poll = db.relationship('Poll', back_populates='options')  # An option is associated with one poll
     votes = db.relationship('Vote', back_populates='option')  # An option can have many votes
-
-option_schema = OptionSchema()  # Create an instance of the OptionSchema class
-options_schema = OptionSchema(many=True)  # Create an instance of the OptionSchema class for multiple options

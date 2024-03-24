@@ -7,7 +7,8 @@ from marshmallow import ValidationError
 from psycopg2 import errorcodes
 
 from init import db, bcrypt
-from models.user import User, user_schema
+from models.user import User
+from models.schemas import user_schema
 
 user_bp = Blueprint('user', __name__, url_prefix='/user')
 
