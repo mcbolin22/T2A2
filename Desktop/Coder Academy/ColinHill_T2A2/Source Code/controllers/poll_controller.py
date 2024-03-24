@@ -12,51 +12,51 @@ from models.vote import Vote, vote_schema
 
 polls_bp = Blueprint('polls', __name__, url_prefix='/polls')
 
+# Endpoint to get all polls, ordered by creation date
 @polls_bp.route('/', methods=['GET'])
 def get_all_polls():
     try:
-        stmt = db.select(Poll).order_by(Poll.created_at.desc())
-        polls = db.session.scalars(stmt)
-        return polls_schema.dump(polls)
+        stmt = db.select(Poll).order_by(Poll.created_at.desc())  # Query to select all polls and order them by creation date
+        polls = db.session.scalars(stmt)  # Execute the query
+        return polls_schema.dump(polls)  # Return the result of the query
     except Exception as err:
-        # Handle database or other unexpected errors
         return jsonify({'error': str(err)}), 500
 
 
+# Endpoint to get all polls for a specific user
 @polls_bp.route('/polls', methods=['GET'])
 @jwt_required()
 def get_polls():
     try:
-        polls = Poll.query.all()
-        return polls_schema.dump(polls), 200
+        polls = Poll.query.all()  # Query to select all polls for a specific user
+        return polls_schema.dump(polls), 200  # Return the result of the query
     except Exception as err:
-        # Handle database or other unexpected errors
         return jsonify({'error': str(err)}), 500
 
 
+# Endpoint to get a specific poll by its ID
 @polls_bp.route('/polls/<int:poll_id>', methods=['GET'])
 @jwt_required()
 def get_poll(poll_id):
     try:
-        poll = Poll.query.get(poll_id)
+        poll = Poll.query.get(poll_id)  # Query to select a specific poll by its ID
         if not poll:
             return {'error': f"Poll not found with ID: {poll_id}"}, 404
-        return poll_schema.dump(poll, include_options=True), 200
+        return poll_schema.dump(poll), 200  # Return the result of the query
     except Exception as err:
-        # Handle database or other unexpected errors
         return jsonify({'error': str(err)}), 500
     
 
+# Endpoint to get the results of a specific poll by its ID
 @polls_bp.route('/polls/<int:poll_id>/results', methods=['GET'])
 @jwt_required()
 def get_poll_results(poll_id):
   try:
-    # Get the poll by ID
-    poll = Poll.query.get(poll_id)
+    poll = Poll.query.get(poll_id)  # Query to select a specific poll by its ID
     if not poll:
       return jsonify({'error': f"Poll not found with ID: {poll_id}"}, 404)
 
-    # Calculate vote counts for each option
+    # Query to calculate vote counts for each option of the poll
     option_results = (
         db.session
         .query(Option.id, Option.text, db.func.count(Vote.id).label('vote_count'))
@@ -73,61 +73,55 @@ def get_poll_results(poll_id):
     }
     return jsonify(results), 200
   except Exception as err:
-    # Handle database or other unexpected errors
     return jsonify({'error': str(err)}), 500
 
-
+# Endpoint to create a new poll
 @polls_bp.route('/polls', methods=['POST'])
 @jwt_required()
 def create_poll():
     try:
-        # Validate data (e.g., required fields, data types)
-        body_data = request.get_json()
+        body_data = request.get_json()  # Get the request data
         if not body_data or 'title' not in body_data:
             return jsonify({'error': 'Missing required field: title'}), 400
 
         title = body_data.get('title')
         description = body_data.get('description')
 
-        # No additional permission check needed for basic user creation
-
+        # Create a new poll instance
         poll = Poll(
             title=title,
             description=description,
             user_id=get_jwt_identity()
         )
 
-        db.session.add(poll)
-        db.session.commit()
+        db.session.add(poll)  # Add the new poll to the session
+        db.session.commit()  # Commit the session to save the new poll
 
-        return poll_schema.dump(poll), 201
+        return poll_schema.dump(poll), 201  # Return the newly created poll
     except IntegrityError as err:
-        # Handle potential duplicate entry errors
         return jsonify({'error': f'Conflict: {str(err)}'}), 409
     except Exception as err:
-        # Handle database or other unexpected errors
         return jsonify({'error': str(err)}), 500
 
-
+# Endpoint to update a specific poll by its ID
 @polls_bp.route('/polls/<int:poll_id>', methods=['PUT'])
 @jwt_required()
 def update_poll(poll_id):
     try:
-        # Validate data (e.g., required fields, data types)
-        body_data = request.get_json()
+        body_data = request.get_json()  # Get the request data
         if not body_data:
             return jsonify({'error': 'Missing data'}), 400
 
         title = body_data.get('title')
         description = body_data.get('description')
 
-        # Check permission to update poll (creator or admin)
-        current_user_id = get_jwt_identity()
+        # Query to select a specific poll by its ID
         poll = Poll.query.get(poll_id)
         if not poll:
             return jsonify({'error': f"Poll not found with ID: {poll_id}"}), 404
 
         # Check if user is creator of the poll or an admin
+        current_user_id = get_jwt_identity()
         is_creator = poll.user_id == current_user_id
         current_user = User.query.get(current_user_id)  # Assuming you have a User model
         is_admin = current_user and current_user.is_admin  # Check for admin role (optional)
@@ -138,14 +132,12 @@ def update_poll(poll_id):
         poll.title = title or poll.title
         poll.description = description or poll.description
 
-        db.session.commit()
+        db.session.commit()  # Commit the session to save the changes
 
-        return poll_schema.dump(poll), 200
+        return poll_schema.dump(poll), 200  # Return the updated poll
     except IntegrityError as err:
-        # Handle potential duplicate entry errors
         return jsonify({'error': f'Conflict: {str(err)}'}), 409
     except Exception as err:
-        # Handle database or other unexpected errors
         return jsonify({'error': str(err)}), 500
 
 

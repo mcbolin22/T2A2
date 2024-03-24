@@ -3,6 +3,7 @@ from datetime import timedelta
 from flask import Blueprint, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from sqlalchemy.exc import IntegrityError
+from marshmallow import ValidationError
 from psycopg2 import errorcodes
 
 from init import db, bcrypt
@@ -16,10 +17,13 @@ def user_register():
         # the data that we get in body of the request
         body_data = request.get_json()
 
+        # validate and deserialize input
+        user_data = user_schema.load(body_data)
+
         # create the user instance
         user = User(
-            name=body_data.get('name'),
-            email=body_data.get('email')
+            name=user_data.get('name'),
+            email=user_data.get('email')
         )
 
         # add and commit the user to DB
@@ -28,11 +32,14 @@ def user_register():
         # Repond back to the client
         return user_schema.dump(user), 201
 
+    except ValidationError as err:
+        return {"error": err.messages}, 400  # return validation errors
     except IntegrityError as err:
         if err.orig.pgcode == errorcodes.NOT_NULL_VIOLATION:
             return {"error": f"The {err.orig.diag.column_name} is required"}
         if err.orig.pgcode == errorcodes.UNIQUE_VIOLATION:
             return {"error": "Email address already in use"}, 409
+
     
 @user_bp.route("/login", methods=["POST"]) # /auth/login
 def user_login():

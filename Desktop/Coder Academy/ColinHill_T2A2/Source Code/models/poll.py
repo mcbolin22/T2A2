@@ -1,3 +1,4 @@
+# Import necessary modules and functions
 from datetime import datetime
 from .schemas import PollSchema
 from marshmallow import fields, validates, Schema
@@ -5,47 +6,24 @@ from marshmallow.validate import Length, And, Regexp, OneOf
 from marshmallow.exceptions import ValidationError
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema, auto_field
 from marshmallow_sqlalchemy.fields import Nested
-
-# from .option import OptionSchema
-# from .vote import VoteSchema
-
-
 from init import db, ma
-# from .user import UserSchema
 
+# Define the Poll model that represents the 'polls' table in the database
 class Poll(db.Model):
-    __tablename__ = "polls"
+    __tablename__ = "polls"  # The table name in the database is 'polls'
 
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
-    description = db.Column(db.Text)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    # Define the columns in the 'polls' table
+    id = db.Column(db.Integer, primary_key=True)  # 'id' is the primary key
+    title = db.Column(db.String(100), nullable=False)  # 'title' is a string column that cannot be null
+    description = db.Column(db.Text)  # 'description' is a text column
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)  # 'created_at' is a datetime column with a default value of the current time
 
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)  # 'user_id' is a foreign key that references the 'id' column in the 'users' table
 
-    user = db.relationship("User", back_populates="polls")
-    options = db.relationship("Option", back_populates="poll")
-    votes = db.relationship('Vote', back_populates='poll', lazy=True)
+    # Define the relationships with the 'users', 'options', and 'votes' tables
+    user = db.relationship("User", back_populates="polls")  # A poll is associated with one user
+    options = db.relationship("Option", back_populates="poll")  # A poll can have many options
+    votes = db.relationship('Vote', back_populates='poll', lazy=True)  # A poll can have many votes
 
-class PollSchema(SQLAlchemyAutoSchema):
-    class Meta:
-        model = Poll
-        include_relationships = True
-        load_instance = True
-
-    id = auto_field()
-    title = auto_field()
-    description = auto_field()
-    created_at = auto_field()
-    user_id = auto_field()
-    user = Nested('UserSchema')  # Use string here
-    options = Nested('OptionSchema', many=True)
-    votes = Nested('VoteSchema', many=True)
-
-    @ma.post_load
-    def make_poll(self, data, **kwargs):
-        self.fields["user"].schema = 'UserSchema()'  # Set the schema here
-        return data
-
-poll_schema = PollSchema()
-polls_schema = PollSchema(many=True)
+poll_schema = PollSchema()  # Create an instance of the PollSchema class
+polls_schema = PollSchema(many=True)  # Create an instance of the PollSchema class for multiple polls

@@ -1,39 +1,26 @@
+# Import necessary modules and functions
 from init import db, ma
-from marshmallow import fields, Schema, post_load  # Import post_load from marshmallow
+from .schemas import UserSchema
+from marshmallow import fields, Schema, post_load
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema, auto_field
 from marshmallow_sqlalchemy.fields import Nested
 
+# Define the User model that represents the 'users' table in the database
 class User(db.Model):
-    __tablename__ = 'users'
-    __table_args__ = {'extend_existing': True}
+    __tablename__ = 'users'  # The table name in the database is 'users'
+    __table_args__ = {'extend_existing': True}  # This allows altering the table definition without dropping the existing table
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
-    email = db.Column(db.String, nullable=False, unique=True)
-    password = db.Column(db.String(128), nullable=True)
-    is_admin = db.Column(db.Boolean, default=False)
+    # Define the columns in the 'users' table
+    id = db.Column(db.Integer, primary_key=True)  # 'id' is the primary key
+    name = db.Column(db.String)  # 'name' is a string column
+    email = db.Column(db.String, nullable=False, unique=True)  # 'email' is a unique string column that cannot be null
+    password = db.Column(db.String(128), nullable=True)  # 'password' is a string column that can be null
+    is_admin = db.Column(db.Boolean, default=False)  # 'is_admin' is a boolean column with a default value of False
 
-    polls = db.relationship('Poll', backref='user', lazy=True)
-    votes = db.relationship('Vote', back_populates='user')
+    # Define the relationships with the 'polls' and 'votes' tables
+    polls = db.relationship('Poll', backref='user', lazy=True)  # A user can have many polls
+    votes = db.relationship('Vote', back_populates='user')  # A user can have many votes
 
+user_schema = UserSchema()  # Create an instance of the UserSchema class
+users_schema = UserSchema(many=True)  # Create an instance of the UserSchema class for multiple users
 
-class UserSchema(SQLAlchemyAutoSchema):
-    class Meta:
-        model = User
-        include_relationships = True
-        load_instance = True
-
-    id = auto_field()
-    name = auto_field()
-    email = auto_field()
-    is_admin = auto_field()
-    polls = Nested('PollSchema', many=True)  # Use string here
-    votes = Nested('VoteSchema', many=True)
-
-    @post_load  # Use post_load decorator here
-    def make_user(self, data, **kwargs):
-        self.fields["polls"].schema = 'PollSchema(many=True)'  # Set the schema here
-        return data
-
-user_schema = UserSchema()
-users_schema = UserSchema(many=True)
